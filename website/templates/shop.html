@@ -40,10 +40,16 @@
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/login">Log in</a>
-                            <a class="dropdown-item" href="/sign-up">Sign up</a>
-                        </div>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                            {% if current_user.is_authenticated %}
+                            <li><a class="dropdown-item" href="/profile/{{ current_user.id }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="/orders">Orders</a></li>
+                            <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="/login">Login</a></li>
+                            <li><a class="dropdown-item" href="/sign-up">Sign up</li>
+                            {% endif %}
+                        </ul>
                     </div>
                     <div class="btn-group mx-2">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
