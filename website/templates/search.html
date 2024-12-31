@@ -85,9 +85,9 @@
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="/search" method="get">
+                <form class="d-flex" role="search" action="/search" style="margin-right: 170px;" method="POST">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="query" placeholder="Search for products" required>
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search for products" aria-label="Search" required>
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text bg-transparent text-primary border-0">
                                 <i class="fa fa-search"></i>
@@ -176,50 +176,47 @@
     <!-- Navbar End -->
 
 
-    {% if items | length < 1 %}
-    <h3 style="color: black;">No Items Match your Search query</h3>
+{% if items | length < 1 %}
+<h3 style="color: black;">No Items Match your Search query</h3>
 
-    {% else %}
+{% else %}
 
+<div class="container text-center">
+    <div class="row" style="margin: 8px; background-color: rgb(219, 218, 218);" id="column">
 
-    <div class="container text-center">
-        <div class="row" style="margin: 8px; background-color: rgb(219, 218, 218);" id="column">
+        {% for item in items %}
 
-            {% for item in items %}
-
-            <div class="col" style="background-color: white;">
-            
-                <img src="{{ item.product_picture }}" alt="" style="height: 202px; width: 180px; border-radius: 10px;">
-
-                <div class="row" style="margin-top: 5px;">
-                    <h6 style="color: gray;">{{ item.product_name }}</h6>
-                </div>
-
-                <div class="row" style="margin-top: 10px;">
-                
-                    <div class="col">
-
-                        <h5 style="font-weight: 600; font-family: 'Times New Roman', Times, serif;">USD {{ item.current_price }}</h5>
-                        <strike><p style="color: gray;">USD {{ item.previous_price}}</p></strike>
-                    </div>
-
-                    <div class="col">
-                        <a href="/add-to-cart/{{ item.id }}">Add</a>
-                    </div>
-                
-                </div>
-
-                <div class="row">
-                    <p>{{ item.in_stock }} Items Left</p>
-                </div>
-            </div>
+        <div class="col-md-3 mb-4" style="background-color: white; border-radius: 10px; padding: 10px;">
         
-            {% endfor %}
+            <img src="{{ item.product_picture }}" alt="" style="height: 202px; width: 100%; border-radius: 10px; object-fit: cover;">
 
+            <div class="row" style="margin-top: 5px;">
+                <h6 style="color: gray; width: 100%;">{{ item.product_name }}</h6>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+            
+                <div class="col">
+                    <h5 style="font-weight: 600; font-family: 'Times New Roman', Times, serif;">USD {{ item.current_price }}</h5>
+                    <s><p style="color: gray;">USD {{ item.previous_price}}</p></s>
+                </div>
+
+                <div class="col text-right">
+                    <a href="/add-to-cart/{{ item.id }}" class="btn btn-primary btn-sm">Add</a>
+                </div>
+            
+            </div>
+
+            <div class="row">
+                <p style="width: 100%;">{{ item.in_stock }} Items Left</p>
+            </div>
         </div>
-    </div>
+    
+        {% endfor %}
 
-    {% endif %}
+    </div>
+</div>
+{% endif %}
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">

@@ -84,13 +84,13 @@
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="/search">
+                <form class="d-flex" role="search" action="/search" style="margin-right: 170px;" method="POST">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search for products" aria-label="Search" required>
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit" class="input-group-text bg-transparent text-primary border-0">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>
