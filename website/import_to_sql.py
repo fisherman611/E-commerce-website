@@ -65,9 +65,9 @@ cursor.execute('DROP TABLE IF EXISTS "order"')
 cursor.execute("""
     CREATE TABLE customer (
         id INTEGER PRIMARY KEY,
-        email TEXT,
-        username TEXT,
-        password_hash TEXT,
+        email VARCHAR(100),
+        username VARCHAR(100),
+        password_hash VARCHAR(150),
         date_joined DATETIME
     )
 """)
@@ -75,11 +75,11 @@ cursor.execute("""
 cursor.execute("""
     CREATE TABLE product (
         id INTEGER PRIMARY KEY,
-        product_name TEXT,
-        current_price REAL,
-        previous_price REAL,
+        product_name VARCHAR(100),
+        current_price FLOAT,
+        previous_price FLOAT,
         in_stock INTEGER,
-        product_picture TEXT,
+        product_picture VARCHAR(1000),
         flash_sale BOOLEAN,
         date_added DATETIME
     )
@@ -98,9 +98,9 @@ cursor.execute("""
     CREATE TABLE "order" (
         id INTEGER PRIMARY KEY,
         quantity INTEGER,
-        price REAL,
-        status TEXT,
-        payment_id TEXT,
+        price FLOAT,
+        status VARCHAR(100),
+        payment_id VARCHAR(1000),
         customer_link INTEGER,
         product_link INTEGER
     )
