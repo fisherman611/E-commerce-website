@@ -52,7 +52,7 @@ def load_orders():
     return orders
 
 # Connect to SQLite database
-conn = sqlite3.connect('database/ecommerce.sqlite3')
+conn = sqlite3.connect('instance/ecommerce.sqlite3')
 cursor = conn.cursor()
 
 # Drop existing tables
