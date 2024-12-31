@@ -20,6 +20,13 @@ def home():
     return render_template('home.html', items=items, cart=Cart.query.filter_by(customer_link=current_user.id).all()
                            if current_user.is_authenticated else [])
 
+@views.route('/home')
+@login_required
+def show_home():
+    items = Product.query.filter_by(flash_sale=True)
+
+    return render_template('home.html', items=items, cart=Cart.query.filter_by(customer_link=current_user.id).all()
+                           if current_user.is_authenticated else [])
 
 @views.route('/add-to-cart/<int:item_id>')
 @login_required
@@ -52,6 +59,25 @@ def add_to_cart(item_id):
 
     return redirect(request.referrer)
 
+@views.route('/contact')
+@login_required
+def show_contact():
+    return render_template('contact.html')
+
+@views.route('/detail')
+@login_required
+def show_detail():
+    return render_template('detail.html')
+
+@views.route('/shop')
+@login_required
+def show_shop():
+    return render_template('shop.html')
+
+@views.route('/checkout')
+@login_required
+def show_checkout():
+    return render_template('checkout.html')
 
 @views.route('/cart')
 @login_required
