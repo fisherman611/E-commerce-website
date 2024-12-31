@@ -16,13 +16,6 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-    <!-- JavaScripts -->
-    <script src="{{ url_for( 'static', filename='js/owl.carousel.min.js') }}"></script>
-    <script src="{{ url_for( 'static', filename='js/all.min.js') }}"></script>
-    <script src="{{ url_for( 'static', filename='js/jquery.js') }}"></script>
-
-    <script src="{{ url_for( 'static', filename='js/myScript.js') }}"></script>
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../static/css/style.css" rel="stylesheet">
 </head>
@@ -155,7 +148,16 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="/cart" class="dropdown-item">Shopping Cart</a>
+                                    {% if cart | length < 1 %}
+                                    <a class="dropdown-item" href="/cart"><span class="badge bg-success"></span>Shoping Cart
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                    {% else %}
+                                    <a class="dropdown-item" href="/cart"><span class="badge bg-success"></span> Shoping Cart
+                                        <i class="bi bi-{{ cart | length }}-square-fill"></i>
+                                    </a>
+                                    {% endif %}
+                                    <!-- <a href="/cart" class="dropdown-item active">Shopping Cart</a> -->
                                     <a href="/checkout" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
@@ -299,15 +301,9 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="../js/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
-</body>
+    <script src="{{ url_for( 'static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/all.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/myScript.js') }}"></script>
 
 </html>
