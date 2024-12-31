@@ -1,7 +1,10 @@
 id,product_name,current_price,previous_price,in_stock,product_picture,flash_sale,date_added
-2,Spago Spaghetti,82.0,90.0,54,./media/spaghetti.jpg,1,2024-11-01 08:34:03.590030
-3,Samsung Galaxy,18999.0,22000.0,23,./media/phone.jpg,1,2024-11-01 08:35:15.129619
-4,Smart Watch,1200.0,1600.0,41,./media/oraimoWatch.jpg,1,2024-11-01 08:35:49.130609
-5,LG Screen,25000.0,35000.0,7,./media/screen.jpg,1,2024-11-01 08:36:21.243834
-6,Vitron Audio,5500.0,6000.0,20,./media/soundbar.jpg,1,2024-11-01 08:36:48.695161
-7,Lava V2,4200.0,5500.0,16,./media/customA.png,0,2024-11-01 09:04:06.798687
+1,Panasonic DMC-L1 7.5MP, 139.99,160.0,10,../static/images/product-1.jpg,1,2024-11-01 08:34:03.590030
+2,Adidas T-shirt,19.99,24.55,101,../static/images/product-2.jpg,1,2024-11-01 08:35:15.129619
+3,Table Lamp,120.0,150.45,23,../static/images/product-3.jpg,1,2024-11-01 08:35:49.130609
+4,Nike Shoes,89.99,100.0,7,../static/images/product-4.jpg,1,2024-11-01 08:36:21.243834
+5,Drone,250.0,300.0,20,../static/images/product-5.jpg,1,2024-11-01 08:36:48.695161
+6,Apple Watch,420.0,550.0,16,../static/images/product-6.jpg,1,2024-11-01 09:04:06.798687
+7,Black Blouse, 139.99,150.0,10,../static/images/product-7.jpg,1,2024-11-01 08:34:03.590030
+8,Curology,19.99,24.55,101,../static/images/product-8.jpg,1,2024-11-01 08:35:15.129619
+9,Chair,111.55,130.45,23,../static/images/product-9.jpg,0,2024-11-01 08:35:49.130609
