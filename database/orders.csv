@@ -1,0 +1,7 @@
+id,quantity,price,status,payment_id,customer_link,product_link
+1,2,82.0,Pending,7d8c7a96-4e71-49ed-b7a3-f31d206291d3,1,2
+2,1,1200.0,Out for delivery,f8f04147-89ce-4e27-800d-ba88b6eeb9e7,1,4
+3,1,5500.0,Canceled,60ad7a43-b1fb-474d-886d-90ffd0009995,1,6
+4,1,18999.0,Pending,9eaef7f7-654c-446c-936c-8d6244aa799f,3,3
+5,1,25000.0,Pending,e567836b-7ac7-4977-a4d4-d0a53a136f91,3,5
+6,1,18999.0,Out for delivery,5b360eda-e79b-460b-b462-702f905e331d,4,3

@@ -1,0 +1,7 @@
+id,product_name,current_price,previous_price,in_stock,product_picture,flash_sale,date_added
+2,Spago Spaghetti,82.0,90.0,54,./media/spaghetti.jpg,1,2024-11-01 08:34:03.590030
+3,Samsung Galaxy,18999.0,22000.0,23,./media/phone.jpg,1,2024-11-01 08:35:15.129619
+4,Smart Watch,1200.0,1600.0,41,./media/oraimoWatch.jpg,1,2024-11-01 08:35:49.130609
+5,LG Screen,25000.0,35000.0,7,./media/screen.jpg,1,2024-11-01 08:36:21.243834
+6,Vitron Audio,5500.0,6000.0,20,./media/soundbar.jpg,1,2024-11-01 08:36:48.695161
+7,Lava V2,4200.0,5500.0,16,./media/customA.png,0,2024-11-01 09:04:06.798687

@@ -1,0 +1,3 @@
+id,email,username,password_hash,date_joined
+1,admin@gmail.com,Admin,pbkdf2:sha256:600000$VQ1CFEFElUXecR9V$3ecacdb793aa64fadbe0791925a7b904605d465dab5dad86d624f8277cd8e061, 2024-11-01 07:23:29.260115
+2,mark@gmail.com,Mark,pbkdf2:sha256:600000$lx7Q3JmIBjW6O32W$3c71b07f1a7f14507bf63804eba6040899d43c7e00783f74be6c458804dee12d, 2024-11-03 10:34:12.512415
