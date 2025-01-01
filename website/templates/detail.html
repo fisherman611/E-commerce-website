@@ -223,20 +223,7 @@
                 <h3 id="product-price" class="font-weight-semi-bold mb-4"></h3>
                 <p id="product-description" class="mb-4"></p>
                 <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <div id="add-to-cart-container"></div>
                 </div>
             </div>
         </div>
@@ -255,12 +242,24 @@
         {% endfor %}
     }`);
 
-    // Function to update product details
+    // Function to update product details and Add to Cart button
     const updateProductDetails = (productId) => {
         const product = productData[productId];
+        
+        // Update product details
         document.getElementById('product-name').textContent = product.name;
         document.getElementById('product-price').textContent = `$${product.price}`;
         document.getElementById('product-description').textContent = product.description;
+        
+        // Update Add to Cart button
+        const addToCartContainer = document.getElementById('add-to-cart-container');
+        addToCartContainer.innerHTML = `
+            <a href="/add-to-cart/${productId}">
+                <button class="btn btn-primary px-3">
+                    <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+                </button>
+            </a>
+        `;
     };
 
     // Function to get the next or previous product ID
