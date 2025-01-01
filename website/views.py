@@ -74,7 +74,8 @@ def show_detail():
 @login_required
 def show_shop():
     products = Product.query.all()  # Fetch all products from the database
-    return render_template('shop.html', products=products)
+    return render_template('shop.html', products=products, cart=Cart.query.filter_by(customer_link=current_user.id).all()
+                           if current_user.is_authenticated else [])
 
 @views.route('/checkout')
 @login_required
