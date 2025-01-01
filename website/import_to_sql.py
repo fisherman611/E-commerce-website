@@ -28,6 +28,7 @@ def load_products():
     products['product_picture'] = products['product_picture'].fillna('').astype(str)
     products['flash_sale'] = products['flash_sale'].astype(bool)
     products['date_added'] = pd.to_datetime(products['date_added'], errors='coerce').fillna(pd.Timestamp('1970-01-01'))
+    products['product_description'] = products['product_description'].fillna('').astype(str)
     return products
 
 def load_carts():
@@ -36,7 +37,7 @@ def load_carts():
     carts['id'] = carts['id'].astype(int)
     carts['quantity'] = carts['quantity'].astype(int)
     carts['customer_link'] = carts['customer_link'].astype(int)
-    carts['product_link]'] = carts['product_link'].astype(int)
+    carts['product_link'] = carts['product_link'].astype(int)
     return carts
 
 def load_orders():
@@ -48,7 +49,7 @@ def load_orders():
     orders['status'] = orders['status'].fillna('').astype(str)
     orders['payment_id'] = orders['payment_id'].fillna('').astype(str)
     orders['customer_link'] = orders['customer_link'].astype(int)
-    orders['product_link]'] = orders['product_link'].astype(int)
+    orders['product_link'] = orders['product_link'].astype(int)
     return orders
 
 # Connect to SQLite database
@@ -84,12 +85,13 @@ cursor.execute("""
         product_picture VARCHAR(1000) NOT NULL, 
         flash_sale BOOLEAN, 
         date_added DATETIME, 
+        product_description TEXT NOT NULL,
         PRIMARY KEY (id)
     )
 """)
 
 cursor.execute("""  
-	CREATE TABLE cart (
+    CREATE TABLE cart (
         id INTEGER NOT NULL, 
         quantity INTEGER NOT NULL, 
         customer_link INTEGER NOT NULL, 
@@ -101,7 +103,7 @@ cursor.execute("""
 """)
 
 cursor.execute("""
-	CREATE TABLE "order" (
+    CREATE TABLE "order" (
         id INTEGER NOT NULL, 
         quantity INTEGER NOT NULL, 
         price FLOAT NOT NULL, 
@@ -115,7 +117,7 @@ cursor.execute("""
     )
 """)
 
-# Load data
+# Load datas
 customers = load_customers()
 products = load_products()
 carts = load_carts()
@@ -131,9 +133,9 @@ for _, customer in customers.iterrows():
 # Insert data into product table
 for _, product in products.iterrows():
     cursor.execute("""
-        INSERT OR REPLACE INTO product (id, product_name, current_price, previous_price, in_stock, product_picture, flash_sale, date_added)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    """, (product['id'], product['product_name'], product['current_price'], product['previous_price'], product['in_stock'], product['product_picture'], product['flash_sale'], product['date_added'].strftime('%Y-%m-%d %H:%M:%S')))
+        INSERT OR REPLACE INTO product (id, product_name, current_price, previous_price, in_stock, product_picture, flash_sale, date_added, product_description)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (product['id'], product['product_name'], product['current_price'], product['previous_price'], product['in_stock'], product['product_picture'], product['flash_sale'], product['date_added'].strftime('%Y-%m-%d %H:%M:%S'), product['product_description']))
 
 # Insert data into cart table
 for _, cart in carts.iterrows():
