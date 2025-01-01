@@ -67,7 +67,8 @@ def show_contact():
 @views.route('/detail')
 @login_required
 def show_detail():
-    return render_template('detail.html')
+    products = Product.query.all()  # Fetch all products from the database
+    return render_template('detail.html', products=products)
 
 @views.route('/shop')
 @login_required
