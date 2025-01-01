@@ -1,2 +1,2 @@
-id,email,username,password_hash,date_joined
-1,thanh@gmail.com,Thanh,pbkdf2:sha256:600000$jHyOHCmm8QneA4V8$c17d943af55f319aeb151cbe67bee42d81a4dd98a9ecdd14dcc52e729fe8a3f0, 2024-11-03 10:34:12.512415
+id,email,username,password_hash
+1,thanh@gmail.com,Thanh,pbkdf2:sha256:600000$jHyOHCmm8QneA4V8$c17d943af55f319aeb151cbe67bee42d81a4dd98a9ecdd14dcc52e729fe8a3f0
