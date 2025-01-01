@@ -29,6 +29,7 @@ def load_products():
     products['flash_sale'] = products['flash_sale'].astype(bool)
     products['date_added'] = pd.to_datetime(products['date_added'], errors='coerce').fillna(pd.Timestamp('1970-01-01'))
     products['product_description'] = products['product_description'].fillna('').astype(str)
+    products['rating'] = products['rating'].astype(float)  # Add this line
     return products
 
 def load_carts():
@@ -86,6 +87,7 @@ cursor.execute("""
         flash_sale BOOLEAN, 
         date_added DATETIME, 
         product_description TEXT NOT NULL,
+        rating FLOAT, 
         PRIMARY KEY (id)
     )
 """)
@@ -133,9 +135,9 @@ for _, customer in customers.iterrows():
 # Insert data into product table
 for _, product in products.iterrows():
     cursor.execute("""
-        INSERT OR REPLACE INTO product (id, product_name, current_price, previous_price, in_stock, product_picture, flash_sale, date_added, product_description)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (product['id'], product['product_name'], product['current_price'], product['previous_price'], product['in_stock'], product['product_picture'], product['flash_sale'], product['date_added'].strftime('%Y-%m-%d %H:%M:%S'), product['product_description']))
+        INSERT OR REPLACE INTO product (id, product_name, current_price, previous_price, in_stock, product_picture, flash_sale, date_added, product_description, rating)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (product['id'], product['product_name'], product['current_price'], product['previous_price'], product['in_stock'], product['product_picture'], product['flash_sale'], product['date_added'].strftime('%Y-%m-%d %H:%M:%S'), product['product_description'], product['rating']))
 
 # Insert data into cart table
 for _, cart in carts.iterrows():

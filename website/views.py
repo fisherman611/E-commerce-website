@@ -73,7 +73,8 @@ def show_detail():
 @views.route('/shop')
 @login_required
 def show_shop():
-    return render_template('shop.html')
+    products = Product.query.all()  # Fetch all products from the database
+    return render_template('shop.html', products=products)
 
 @views.route('/checkout')
 @login_required
