@@ -32,6 +32,7 @@ class Customer(db.Model, UserMixin):
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String(100), nullable=False)
+    product_description = db.Column(db.String(1000), nullable=True)  # Added product_description field
     current_price = db.Column(db.Float, nullable=False)
     previous_price = db.Column(db.Float, nullable=False)
     in_stock = db.Column(db.Integer, nullable=False)
@@ -53,8 +54,6 @@ class Cart(db.Model):
     customer_link = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     product_link = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
 
-    # customer product
-
     def __str__(self):
         return '<Cart %r>' % self.id
 
@@ -69,18 +68,5 @@ class Order(db.Model):
     customer_link = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     product_link = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
 
-    # customer
-
     def __str__(self):
         return '<Order %r>' % self.id
-
-
-
-
-
-
-
-
-
-
-
