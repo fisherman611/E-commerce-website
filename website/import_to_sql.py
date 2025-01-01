@@ -64,45 +64,54 @@ cursor.execute('DROP TABLE IF EXISTS "order"')
 # Create new tables
 cursor.execute("""
     CREATE TABLE customer (
-        id INTEGER PRIMARY KEY,
-        email VARCHAR(100),
-        username VARCHAR(100),
-        password_hash VARCHAR(150),
-        date_joined DATETIME
+        id INTEGER NOT NULL, 
+        email VARCHAR(100), 
+        username VARCHAR(100), 
+        password_hash VARCHAR(150), 
+        date_joined DATETIME, 
+        PRIMARY KEY (id), 
+        UNIQUE (email)
     )
 """)
 
 cursor.execute("""
     CREATE TABLE product (
-        id INTEGER PRIMARY KEY,
-        product_name VARCHAR(100),
-        current_price FLOAT,
-        previous_price FLOAT,
-        in_stock INTEGER,
-        product_picture VARCHAR(1000),
-        flash_sale BOOLEAN,
-        date_added DATETIME
+        id INTEGER NOT NULL, 
+        product_name VARCHAR(100) NOT NULL, 
+        current_price FLOAT NOT NULL, 
+        previous_price FLOAT NOT NULL, 
+        in_stock INTEGER NOT NULL, 
+        product_picture VARCHAR(1000) NOT NULL, 
+        flash_sale BOOLEAN, 
+        date_added DATETIME, 
+        PRIMARY KEY (id)
     )
 """)
 
 cursor.execute("""  
-    CREATE TABLE cart (
-        id INTEGER PRIMARY KEY,
-        quantity INTEGER,
-        customer_link INTEGER,
-        product_link INTEGER
+	CREATE TABLE cart (
+        id INTEGER NOT NULL, 
+        quantity INTEGER NOT NULL, 
+        customer_link INTEGER NOT NULL, 
+        product_link INTEGER NOT NULL, 
+        PRIMARY KEY (id), 
+        FOREIGN KEY(customer_link) REFERENCES customer (id), 
+        FOREIGN KEY(product_link) REFERENCES product (id)
     )
 """)
 
 cursor.execute("""
-    CREATE TABLE "order" (
-        id INTEGER PRIMARY KEY,
-        quantity INTEGER,
-        price FLOAT,
-        status VARCHAR(100),
-        payment_id VARCHAR(1000),
-        customer_link INTEGER,
-        product_link INTEGER
+	CREATE TABLE "order" (
+        id INTEGER NOT NULL, 
+        quantity INTEGER NOT NULL, 
+        price FLOAT NOT NULL, 
+        status VARCHAR(100) NOT NULL, 
+        payment_id VARCHAR(1000) NOT NULL, 
+        customer_link INTEGER NOT NULL, 
+        product_link INTEGER NOT NULL, 
+        PRIMARY KEY (id), 
+        FOREIGN KEY(customer_link) REFERENCES customer (id), 
+        FOREIGN KEY(product_link) REFERENCES product (id)
     )
 """)
 
