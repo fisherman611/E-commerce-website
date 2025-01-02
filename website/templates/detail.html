@@ -200,11 +200,12 @@
 <div class="container-fluid pb-5">
     <div class="row px-xl-5">
         <div class="col-lg-5 mb-30">
-            <!-- Carousel -->
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner bg-light">
                     {% for product in products %}
-                    <div class="carousel-item {% if loop.first %}active{% endif %}" data-product-id="{{ product.id }}">
+                    <div class="carousel-item {% if loop.first %}active{% endif %}" 
+                         data-product-id="{{ product.id }}"
+                         data-rating="{{ product.rating }}">
                         <img class="w-100 h-100" src="{{ product.product_picture }}" alt="{{ product.product_name }}">
                     </div>
                     {% endfor %}
@@ -222,6 +223,7 @@
                 <h3 id="product-name"></h3>
                 <h3 id="product-price" class="font-weight-semi-bold mb-4"></h3>
                 <p id="product-description" class="mb-4"></p>
+                <div id="rating-container" class="d-flex align-items-center mb-4"></div>
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div id="add-to-cart-container"></div>
                 </div>
@@ -231,29 +233,42 @@
 </div>
 
 <script>
-    // Product data from server
     const productData = JSON.parse(`{
         {% for product in products %}
         "{{ product.id }}": {
             "name": "{{ product.product_name }}",
             "price": "{{ product.current_price }}",
-            "description": "{{ product.product_description }}"
+            "description": "{{ product.product_description }}",
+            "rating": {{ product.rating }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
     }`);
 
-    // Function to update product details and Add to Cart button
+    function generateRatingStars(rating) {
+        let starsHtml = '';
+        for (let i = 0; i < 5; i++) {
+            if ((rating - i) >= 1) {
+                starsHtml += '<small class="fa fa-star text-primary mr-1"></small>';
+            } else if ((rating - i) >= 0.75) {
+                starsHtml += '<small class="fa fa-star text-primary mr-1"></small>';
+            } else if ((rating - i) >= 0.25) {
+                starsHtml += '<small class="fa fa-star-half-alt text-primary mr-1"></small>';
+            } else {
+                starsHtml += '<small class="far fa-star text-primary mr-1"></small>';
+            }
+        }
+        return starsHtml + `<small class="ml-1">(${rating.toFixed(1)})</small>`;
+    }
+
     const updateProductDetails = (productId) => {
         const product = productData[productId];
         
-        // Update product details
         document.getElementById('product-name').textContent = product.name;
         document.getElementById('product-price').textContent = `$${product.price}`;
         document.getElementById('product-description').textContent = product.description;
+        document.getElementById('rating-container').innerHTML = generateRatingStars(product.rating);
         
-        // Update Add to Cart button
-        const addToCartContainer = document.getElementById('add-to-cart-container');
-        addToCartContainer.innerHTML = `
+        document.getElementById('add-to-cart-container').innerHTML = `
             <a href="/add-to-cart/${productId}">
                 <button class="btn btn-primary px-3">
                     <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
@@ -262,37 +277,27 @@
         `;
     };
 
-    // Function to get the next or previous product ID
     const getAdjacentProductId = (direction) => {
         const items = Array.from(document.querySelectorAll('.carousel-item'));
         const currentIndex = items.findIndex(item => item.classList.contains('active'));
-        let newIndex;
-        
-        if (direction === 'next') {
-            newIndex = (currentIndex + 1) % items.length;
-        } else {
-            newIndex = (currentIndex - 1 + items.length) % items.length;
-        }
-        
+        const newIndex = direction === 'next' 
+            ? (currentIndex + 1) % items.length 
+            : (currentIndex - 1 + items.length) % items.length;
         return items[newIndex].getAttribute('data-product-id');
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Initialize with the first product
         const firstProductId = document.querySelector('.carousel-item.active').getAttribute('data-product-id');
         updateProductDetails(firstProductId);
 
-        const carousel = document.getElementById('product-carousel');
-        const prevButton = document.querySelector('.carousel-control-prev');
-        const nextButton = document.querySelector('.carousel-control-next');
-
-        // Update on both slide and slid events for smooth transitions
         $('#product-carousel').on('slide.bs.carousel', (event) => {
             const productId = event.relatedTarget.getAttribute('data-product-id');
             updateProductDetails(productId);
         });
 
-        // Handle manual navigation with buttons
+        const prevButton = document.querySelector('.carousel-control-prev');
+        const nextButton = document.querySelector('.carousel-control-next');
+
         prevButton.addEventListener('click', (e) => {
             e.preventDefault();
             const prevProductId = getAdjacentProductId('prev');
@@ -307,7 +312,6 @@
             $('#product-carousel').carousel('next');
         });
 
-        // Handle keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 const prevProductId = getAdjacentProductId('prev');
@@ -321,7 +325,6 @@
         });
     });
 </script>
-
 <!-- Shop Detail End -->
 
 
