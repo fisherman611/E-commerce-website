@@ -1,0 +1,8 @@
+Flask==2.3.2
+Flask-SQLAlchemy==3.0.5
+Flask-Login==0.6.2
+Flask-WTF==1.1.1
+pandas==2.2.3
+wtforms==3.0.0
+Werkzeug==2.3.6
+intasend-python
