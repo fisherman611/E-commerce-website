@@ -3,6 +3,7 @@
 This project is a learning exercise focused on developing an e-commerce website. It simulates key features of a modern online shopping platform, such as product catalogs, a shopping cart, user account management, and a checkout system. The project emphasizes practical experience in front-end design, back-end integration, and database management.
 
 Through this initiative, valuable insights were gained into building responsive and user-friendly web applications. Key aspects of the project include planning, design, implementation, and lessons learned. This repository serves as a showcase of applied web development concepts and best practices.
+![demo](demo.gif)
 ## Project structure 
 ```
 ecommerce-website/
@@ -52,9 +53,9 @@ cd E-commerce-website
 
 Install ```requirements.txt``` (replace `3.11` with your installed Python version):
 
-    ```
-    py -3.11 -m pip install -r requirements.txt
-    ```
+```
+py -3.11 -m pip install -r requirements.txt
+```
 
 ## Demo
 To run the application using the command line, use the following command (replace `3.11` with your installed Python version):
