@@ -39,21 +39,22 @@ My database has 4 tables: Cart, Customer, Order, Product. Here is the relational
 
 ## Requirements
 - Python version 3.11 or higher
-- Install ```requirements.txt``` (replace `3.11` with your installed Python version):
 
-    ```
-    py -3.11 -m pip install -r requirements.txt
-    ```
 ## Installation
 Clone the repository, change the current working directory to this repository's root folder:
 
 ```
 git clone https://github.com/fisherman611/E-commerce-website.git
 ```
-
 ```
 cd E-commerce-website
 ```
+
+Install ```requirements.txt``` (replace `3.11` with your installed Python version):
+
+    ```
+    py -3.11 -m pip install -r requirements.txt
+    ```
 
 ## Demo
 To run the application using the command line, use the following command (replace `3.11` with your installed Python version):
